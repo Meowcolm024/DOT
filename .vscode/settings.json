@@ -1,0 +1,7 @@
+{
+    "has-go.ghciInterpreter": "Stack/Cabal",
+    "has-go.runFileButton": false,
+    "has-go.stackRunButton": true,
+    "has-go.overrideGHCiArgs": "",
+    "haskell.formattingProvider": "brittany"
+}
