@@ -1,5 +1,6 @@
 module Parser
-    ( term
+    ( expr
+    , term
     , type_
     , regularParse
     ) where
@@ -12,6 +13,9 @@ import           Text.Parsec.String             ( Parser )
 
 regularParse :: Parser a -> String -> Either ParseError a
 regularParse p = parse p ""
+
+expr :: Parser Term
+expr = term <* eof
 
 definition :: Parser Definition
 definition = chainl1 (try tydef <|> fldef) aggr
@@ -39,6 +43,7 @@ type_ =
             , func
             , fldelc
             , mu
+            , parens type_
             ]
         `chainl1` (reservedOp "^" $> Intersect)
 
@@ -66,6 +71,7 @@ type_ =
             reservedOp ":"
             s <- type_
             pure (x, s)
+        optional (reservedOp ":")
         ty <- type_
         pure $ Func x s ty
     mu = do
