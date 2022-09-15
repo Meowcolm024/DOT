@@ -20,7 +20,7 @@ data Value
   | Lambda Variable Type Term
 
 instance Show Value where
-  show (Object v t d) = "v(" ++ show v ++ ":" ++ show t ++ ")" ++ show d
+  show (Object v t d) = "object (" ++ show v ++ ":" ++ show t ++ ")" ++ show d
   show (Lambda v t d) = "\\(" ++ show v ++ ":" ++ show t ++ ")" ++ show d
 
 data Term
@@ -44,8 +44,8 @@ data Type
   | TypeProj Variable TypeMember
   | Func Variable Type Type
   | FieldDelc TermMember Type
-  | Intersect Type Type
-  | Mu Variable Type
+  | Intersect Type Type           -- ^ t1 ^ t2
+  | Mu Variable Type              -- ^ µ(x : T)
 
 instance Show Type where
   show Top = "Top"
@@ -61,7 +61,7 @@ instance Show Type where
 data Definition
   = TypeDef TypeMember Type
   | FieldDef TermMember Term
-  | AggrDef Definition Definition
+  | AggrDef Definition Definition   -- ^ d1 ^ d2
 
 instance Show Definition where
   show (TypeDef  a  t ) = "{" ++ show a ++ "=" ++ show t ++ "}"
