@@ -1,0 +1,9 @@
+let ift =
+    object (self : {IFT : (\(x : {A : Bot..Top})\(t : x.A)\(f : x.A): x.A)..(\(x : {A : Bot..Top})\(t : x.A)\(f : x.A): x.A)}) 
+        { IFT = \(x : {A : Bot..Top})\(t : x.A)\(f : x.A): x.A }
+in let bool = 
+    object (b : {Boolean : ift.IFT..ift.IFT} ^ {true : ift.IFT} ^ {false : ift.IFT})
+        { Boolean = ift.IFT } ^
+        { true = \(x : {A : Bot..Top})\(t : x.A)\(f : x.A) t } ^
+        { false = \(x : {A : Bot..Top})\(t : x.A)\(f : x.A) f }
+in bool.true

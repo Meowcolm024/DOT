@@ -1,19 +1,8 @@
 import           Parser
 
-expr' = "let ift = " ++ ift ++ " in " ++ bool
-
-bool =
-    "~(b : {Boolean : ift.IFT..ift.IFT} ^ {true : ift.IFT} ^ {false : ift.IFT})"
-        ++ "{ Boolean = ift.IFT }"
-        ++ " ^ { true = \\(x : {A : Bot..Top})\\(t : x.A)\\(f : x.A) t }"
-        ++ " ^ { false = \\(x : {A : Bot..Top})\\(t : x.A)\\(f : x.A) f }"
-
-ift =
-    let i = "\\(x : {A : Bot..Top})\\(t : x.A)\\(f : x.A): x.A "
-    in  "~(x : {IFT : (" ++ i ++ ")..(" ++ i ++ ")}) {IFT = " ++ i ++ "}"
-
 main :: IO ()
 main = do
-    print $ regularParse term expr'
-    print $ regularParse term ift
-    print $ regularParse expr "x x"
+    file <- readFile "example/bool.txt"
+    case regularParse expr file of
+        Left  err -> error (show err)
+        Right out -> print out

@@ -75,7 +75,7 @@ type_ =
         ty <- type_
         pure $ Func x s ty
     mu = do
-        reservedOp "@"
+        reservedOp "µ"
         (x, t) <- parens $ do
             x <- variable
             reservedOp ":"
@@ -87,7 +87,7 @@ value :: Parser Value
 value = object <|> lambda
   where
     object = do
-        reservedOp "~"
+        reserved "object"
         (x, t) <- parens $ do
             x <- variable
             reservedOp ":"

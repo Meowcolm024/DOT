@@ -56,7 +56,7 @@ instance Show Type where
   show (Func x t s   ) = "\\(" ++ show x ++ ":" ++ show t ++ ")" ++ show s
   show (FieldDelc a t) = "{" ++ show a ++ ":" ++ show t ++ "}"
   show (Intersect s u) = show s ++ "^" ++ show u
-  show (Mu        v t) = "u(" ++ show v ++ ":" ++ show t ++ ")"
+  show (Mu        v t) = "µ(" ++ show v ++ ":" ++ show t ++ ")"
 
 data Definition
   = TypeDef TypeMember Type

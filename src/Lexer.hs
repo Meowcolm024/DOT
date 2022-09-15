@@ -13,8 +13,8 @@ import qualified Text.Parsec.Token             as P
 
 lexer :: P.GenTokenParser String u Identity
 lexer = P.makeTokenParser haskellStyle
-    { P.reservedNames   = ["let", "in", "Top", "Bot"]
-    , P.reservedOpNames = ["=", "^", "\\", "~", ":", "..", "@"]
+    { P.reservedNames   = ["let", "in", "Top", "Bot", "object"]
+    , P.reservedOpNames = ["=", "^", "\\", ":", "..", "µ"]
     }
 
 identifier :: Parser String

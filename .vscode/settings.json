@@ -3,5 +3,8 @@
     "has-go.runFileButton": false,
     "has-go.stackRunButton": true,
     "has-go.overrideGHCiArgs": "",
-    "haskell.formattingProvider": "brittany"
+    "haskell.formattingProvider": "brittany",
+    "files.watcherExclude": {
+        "**/target": true
+    }
 }
